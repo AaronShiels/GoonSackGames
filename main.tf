@@ -143,12 +143,3 @@ resource "aws_s3_bucket_policy" "this" {
   bucket = aws_s3_bucket.this.id
   policy = data.aws_iam_policy_document.bucket_read.json
 }
-
-resource "aws_s3_bucket_website_configuration" "this" {
-  bucket = aws_s3_bucket.this.bucket
-
-  # TODO eventually host a root site
-  redirect_all_requests_to {
-    host_name = var.subdomain_names.0
-  }
-}
