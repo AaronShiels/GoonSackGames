@@ -143,3 +143,11 @@ resource "aws_s3_bucket_policy" "this" {
   bucket = aws_s3_bucket.this.id
   policy = data.aws_iam_policy_document.bucket_read.json
 }
+
+resource "aws_s3_object" "index_html" {
+  bucket       = aws_s3_bucket.this.id
+  key          = "index.html"
+  source       = "${path.module}/index.html"
+  content_type = "text/html"
+  etag         = filemd5("${path.module}/index.html")
+}
